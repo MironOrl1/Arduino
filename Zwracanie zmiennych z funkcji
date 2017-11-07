@@ -1,0 +1,44 @@
+//funkcja1 zwraca jedną zmienną.
+// jest to zrobione w tradycyjny sposób.
+
+// jeżeli chce się zwrócić więcej niż jedną zmienną lub macierz/liste (matrix/array) 
+// funkcja2 zwraca macierz/liste (matrix/array), używając do tego wzkaźnika(pointer).
+// istotna jest tu gwiazdka "*" w "int funkcja2(int *pointer) {"  ....
+// ... oraz "&" w "funkcja2(&maciez[0]);"
+// Niestety w tym języku nie da się tego zrobić w tradycyjny sposób jak wyżej.
+// Niektóre języki to robią np. scilab i matlab.
+
+void setup() {
+  
+  Serial.begin(9600);  
+  
+  int macierz[2]= {2, 5};
+  int liczba =2;
+  
+  liczba = funkcja1(liczba);
+  Serial.println(liczba); // powinno wyskoczyć 4
+  
+  
+  funkcja2(&macierz[0]);   // znak "&"
+  Serial.println(macierz[0]); // powinno wyskoczyć 8
+  Serial.println(macierz[1]); // powinno wyskoczyć 15
+  
+}
+
+void loop() {
+
+}
+
+int funkcja1(int liczbaModyfikowana) {
+  
+    int wynik = 4 * liczbaModyfikowana;
+    return wynik;
+   
+}
+
+int funkcja2(int *pointer) {    // znak "*"
+
+  pointer[0] = 4*pointer[0];
+  pointer[1] = 3*pointer[1];
+ 
+}
